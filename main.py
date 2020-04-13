@@ -5,7 +5,7 @@ from graphviz import Graph
 
 
 
-filename = "wagner.txt"
+filename = "herschel.txt"
 graph = list() #lista ciji je element grana i njena dva cvora
 edges = list() #lista grana
 sorted_edges = list() #lista sortiranih grana prema broju suseda
@@ -168,7 +168,7 @@ print(FirstSolution[0],FirstSolution[1])
 print()
 
 #-------------------------------------------------------------------------------------------------
-maxIters = 30000
+maxIters = 100000
 BestValue = simulatedAnnealing(maxIters)
 print("●▬▬▬▬ Resenje simuliranim kaljenjem ▬▬▬▬●")
 print(BestValue[0], BestValue[1])
