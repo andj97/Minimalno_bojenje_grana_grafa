@@ -60,7 +60,7 @@ def BnB(edge, color, optimal):
 		return
 	else:
 		not_colored = False
-		print(edge)
+		#print(edge)
 		#print(edge.color)
 
 	for k in edge.adjacent_edges:
@@ -103,15 +103,11 @@ for edge in edges:
 
 g = Graph('G', filename='solution.gv')#, engine='sfdp')
 ##
-colors1 = ['blue','green','red', 'pink', 'yellow']
-#i = 1
-##
+colors1 = ['blue','green','red', 'yellow', 'pink']
+
 for edge in edges:
     i = edge.color
-    #print(edge.color)
-    #print(colors1[i - 1])
     g.edge(str(edge.v1), str(edge.v2), color = colors1[i - 1])
-    #g.edge(str(edge.v1), str(edge.v2),label = str(edge.color), color = colors1[i])
     
     
 

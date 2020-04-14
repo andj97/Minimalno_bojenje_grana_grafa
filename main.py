@@ -2,16 +2,16 @@ from Edge import Edge
 import random
 import os
 from graphviz import Graph
+import graphviz as gv
 
 
-filename = "herschel.txt"
+filename = "wiener_araya.txt"
 graph = list() #lista ciji je element grana i njena dva cvora
 edges = list() #lista grana
 sorted_edges = list() #lista sortiranih grana prema broju suseda
 solution = list() #resenje
 colors = list() #koriscene boje
 colors.append(1) #Na pocetku imamo barem jednu boju
-
 
 def read_input(): #ucitavamo podatke
 	data = open(filename, "r")
@@ -180,8 +180,13 @@ print(BestValue[0], BestValue[1])
 
 g = Graph('G', filename='solution.gv')#, engine='sfdp')
 
+colors1 = ['blue','green','red', 'yellow', 'pink']
+
 for edge in edges:
-	g.edge(str(edge.v1), str(edge.v2),label = str(edge.color))
+	i = edge.color
+	g.edge(str(edge.v1), str(edge.v2), color = colors1[i - 1])
+    
 	
-#print(g.source)
-#g.view() #Ovo meni nesto ne radi, ali upisuje u fajl sta treba..
+	
+print(g.source)
+g.view()
