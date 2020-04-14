@@ -4,7 +4,7 @@ import os
 from graphviz import Graph
 
 
-filename = "franklin.txt"
+filename = "herschel.txt"
 graph = list() #lista ciji je element grana i njena dva cvora
 edges = list() #lista grana
 sorted_edges = list() #lista sortiranih grana prema broju suseda
@@ -39,12 +39,11 @@ def try_to_color(color_to_set, edge_to_color): #pokusavamo da obojimo granu dato
 	return True
 
 def color(): #algoritam za bojenje 
-	#sortiramo grane prema stepenu (broju suseda) 
+	#sortiramo grane prema broju suseda (degree je broj suseda grane)
 	sorted_edges = edges
 	sorted_edges.sort(key=lambda edge: edge.degree, reverse=True)
 	not_colored = [x for x in sorted_edges if x.color is None]
 	#random.shuffle(colors) #mesamo boje zbog redosleda uzimanja
-	#random.shuffle(not_colored) #mesamo neobojene zbog redosleda bojenja
 	
 	for nc_edge in not_colored:
 		
@@ -61,11 +60,11 @@ def color(): #algoritam za bojenje
 			colored = True
 
 
-		#for edge in sorted_edges: #bojimo istom bojom sve neobojene nesusedne grane 
-		#	if edge not in nc_edge.adjacent_edges and edge.color is None:
-		#		try_to_color(nc_edge.color,edge)
+		for edge in sorted_edges: #bojimo istom bojom sve neobojene nesusedne grane 
+			if edge not in nc_edge.adjacent_edges and edge.color is None:
+				try_to_color(nc_edge.color,edge)
 
-		#not_colored = [x for x in sorted_edges if x.color is None] #azuriramo listu neobojenih (ako smo obojili nesusedne one vise ne treba da budu u listi neobojenih)
+		not_colored = [x for x in sorted_edges if x.color is None] #azuriramo listu neobojenih (ako smo obojili nesusedne one vise ne treba da budu u listi neobojenih)
 
 def Solution():
 
@@ -109,7 +108,6 @@ def restore(k,indexs,old_colors,old_colors_num,old_solution):
 
 def simulatedAnnealing(maxIters):
 
-    #currValue = (FirstSolution,numF_colors) #za najgore resenje
     currValue = FirstSolution  
 
     bestValue = currValue
@@ -155,21 +153,6 @@ for item in graph:
 add_adjacent_edges() #Za svaku granu punimo listu suseda
 
 
-#------------------------------------------------------------------------------------------------
-#Pocetno resenje (NAJGORE RESENJE)
-"""
-FirstSolution = list()
-i=1
-for edge in edges:
-	FirstSolution.append([edge.name,i])
-	colors.append(i)
-	i+=1
-numF_colors = i-1
-
-print("●▬▬▬▬ Pocetno resenje: ▬▬▬▬●")
-print(FirstSolution,numF_colors)
-print()
-"""
 #-------------------------------------------------------------------------------------------------
 #RESENJE GENERISANO ALGORITMOM ZA BOJENJE
 
@@ -179,12 +162,13 @@ print(FirstSolution[0],FirstSolution[1])
 print()
 
 #-------------------------------------------------------------------------------------------------
-maxIters = 100000
+maxIters = 50000
 BestValue = simulatedAnnealing(maxIters)
 print("●▬▬▬▬ Resenje simuliranim kaljenjem ▬▬▬▬●")
 print(BestValue[0], BestValue[1])
 
 #print()
+
 
 #koriscene boje
 #colors.sort()
