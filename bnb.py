@@ -2,7 +2,7 @@ from Edge import Edge
 import random
 from graphviz import Graph
 
-filename = "herschel.txt"
+filename = "franklin.txt"
 graph = list()
 edges = list() 
 colors = list()
