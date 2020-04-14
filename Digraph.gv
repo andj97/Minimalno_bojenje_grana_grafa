@@ -1,0 +1,4 @@
+digraph {
+	hello -> world [color=yellow]
+	world -> hello [color=green]
+}

@@ -1,8 +1,9 @@
 from Edge import Edge
 import random
 from graphviz import Graph
+import graphviz as gv
 
-filename = "franklin.txt"
+filename = "wiener_araya.txt"
 graph = list()
 edges = list() 
 colors = list()
@@ -98,12 +99,22 @@ for edge in edges:
 for edge in edges:
 	print(edge.name, edge.color)
 
-#######################3crtanje
+#######################crtanje
 
 g = Graph('G', filename='solution.gv')#, engine='sfdp')
-
+##
+colors1 = ['blue','green','red', 'pink', 'yellow']
+#i = 1
+##
 for edge in edges:
-    g.edge(str(edge.v1), str(edge.v2),label = str(edge.color))
+    i = edge.color
+    #print(edge.color)
+    #print(colors1[i - 1])
+    g.edge(str(edge.v1), str(edge.v2), color = colors1[i - 1])
+    #g.edge(str(edge.v1), str(edge.v2),label = str(edge.color), color = colors1[i])
     
+    
+
 print(g.source)
-g.view() 
+
+g.view()
