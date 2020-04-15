@@ -48,7 +48,7 @@ def try_to_color(color_to_set, edge_to_color): #pokusavamo da obojimo granu dato
 	return True
 
 
-def BnB(edge, color, optimal):
+def backtracking(edge, color, optimal):
 
 	if edge.color is not None: 
 		return
@@ -65,7 +65,7 @@ def BnB(edge, color, optimal):
 
 	for k in edge.adjacent_edges:
 		for c in colors:
-			BnB(k,c,optimal)
+			backtracking(k,c,optimal)
 		#optimal = True
 		
 	optimal = True
@@ -86,7 +86,7 @@ not_colored = False
 
 for edge in edges:
 	for color in colors:
-		BnB(edge, color, optimal)
+		backtracking(edge, color, optimal)
 		if optimal == True:
 			break
 	#optimal = True
